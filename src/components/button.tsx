@@ -13,8 +13,17 @@ export const Button = styled('button', {
   height: '$7',
   letterSpacing: '-0.2px',
 
+  '&:disabled': {
+    backgroundColor: '$gray5',
+    color: '$gray11',
+    cursor: 'not-allowed',
+    '&:hover': {
+      backgroundColor: '$gray5',
+    },
+  },
+
   defaultVariants: {
-    color: 'dark',
+    color: 'primary',
   },
 
   variants: {
@@ -23,10 +32,26 @@ export const Button = styled('button', {
         backgroundColor: '$white',
         color: '$text',
         '&:hover': {
-          backgroundColor: '$gray100',
+          backgroundColor: '$gray4',
+        },
+        '&:active': {
+          backgroundColor: '$gray5',
         },
         '&:focus': {
-          borderColor: '$gray400',
+          borderColor: '$gray7',
+        },
+      },
+      neutral: {
+        backgroundColor: '$gray4',
+        color: '$text',
+        '&:hover': {
+          backgroundColor: '$gray5',
+        },
+        '&:active': {
+          backgroundColor: '$gray6',
+        },
+        '&:focus': {
+          borderColor: '$gray7',
         },
       },
       transparent: {
@@ -39,21 +64,17 @@ export const Button = styled('button', {
           borderColor: 'rgba(0, 0, 0, 0.35)',
         },
       },
-      dark: {
-        backgroundColor: '$gray700',
-        color: '$white',
+      primary: {
+        backgroundColor: '$primary3',
+        color: '$primary12',
         '&:hover': {
-          backgroundColor: '$gray800',
+          backgroundColor: '$primary4',
         },
         '&:focus': {
-          borderColor: '$gray400',
+          borderColor: '$primary6',
         },
-        '&:disabled': {
-          backgroundColor: '$gray500',
-          color: '$gray200',
-          '&:hover': {
-            backgroundColor: '$gray500',
-          },
+        '&:active': {
+          backgroundColor: '$primary5',
         },
       },
     },

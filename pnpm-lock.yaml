@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@radix-ui/colors': ^0.1.8
   '@radix-ui/react-checkbox': ^1.0.1
   '@radix-ui/react-icons': ^1.1.1
   '@radix-ui/react-radio-group': ^1.1.1
@@ -21,6 +22,7 @@ specifiers:
   vite: ^4.1.0
 
 dependencies:
+  '@radix-ui/colors': 0.1.8
   '@radix-ui/react-checkbox': 1.0.1_biqbaboplfbrettd7655fr4n2y
   '@radix-ui/react-icons': 1.1.1_react@18.2.0
   '@radix-ui/react-radio-group': 1.1.1_biqbaboplfbrettd7655fr4n2y
@@ -271,6 +273,10 @@ packages:
       use-isomorphic-layout-effect: 1.1.2_pmekkgnqduwlme35zpnqhenc34
     transitivePeerDependencies:
       - '@types/react'
+    dev: false
+
+  /@radix-ui/colors/0.1.8:
+    resolution: {integrity: sha512-jwRMXYwC0hUo0mv6wGpuw254Pd9p/R6Td5xsRpOmaWkUHlooNWqVcadgyzlRumMq3xfOTXwJReU0Jv+EIy4Jbw==}
     dev: false
 
   /@radix-ui/number/1.0.0:

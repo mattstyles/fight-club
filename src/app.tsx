@@ -26,15 +26,13 @@ export function App() {
             )
           })}
         </Tabs.List>
-        <Container>
-          {routes.map(({id, tab, Component}) => {
-            return (
-              <Tabs.Content key={id} value={tab}>
-                <Component />
-              </Tabs.Content>
-            )
-          })}
-        </Container>
+        {routes.map(({id, tab, Component}) => {
+          return (
+            <Tabs.Content key={id} value={tab}>
+              <Component />
+            </Tabs.Content>
+          )
+        })}
       </Tabs.Root>
     </Screen>
   )

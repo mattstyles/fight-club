@@ -7,7 +7,8 @@ export const Screen = styled('div', {
   // minWidth: '100vw',
 
   defaultVariants: {
-    color: 'primary',
+    color: 'white',
+    display: 'block',
   },
 
   variants: {
@@ -15,11 +16,19 @@ export const Screen = styled('div', {
       white: {
         backgroundColor: '$white',
       },
-      dark: {
-        backgroundColor: '$gray100',
+      app: {
+        backgroundColor: '$gray1',
       },
-      primary: {
-        backgroundColor: '$gray50',
+      subtle: {
+        backgroundColor: '$gray2',
+      },
+    },
+    display: {
+      block: {
+        display: 'block',
+      },
+      flex: {
+        display: 'flex',
       },
     },
   },

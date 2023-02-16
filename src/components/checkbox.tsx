@@ -9,7 +9,7 @@ const StyledCheckbox = styled(CheckboxPrimitive.Root, {
   width: '$5',
   height: '$5',
   borderRadius: '$1',
-  borderColor: '$gray300',
+  borderColor: '$gray5',
   borderWidth: '2px',
   borderStyle: 'solid',
   display: 'flex',
@@ -17,10 +17,11 @@ const StyledCheckbox = styled(CheckboxPrimitive.Root, {
   justifyContent: 'center',
   // boxShadow: `0 2px 10px ${blackA.blackA7}`,
   '&:hover': {
-    backgroundColor: '$gray100',
+    backgroundColor: '$primary4',
+    color: '$primary12',
   },
   '&:focus': {
-    borderColor: '$gray500',
+    borderColor: '$primary6',
   },
 })
 

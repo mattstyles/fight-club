@@ -27,8 +27,11 @@ export const alphaLight = {
 export const tokens = {
   transparent: 'transparent',
   current: 'current',
-  primary: 'hotpink',
-  text: 'hsl(228, 4%, 24%)',
-  textHighlight: '$primary',
-  heading: 'hsl(222, 9%, 21%)',
+
+  // Text high contrast
+  text: '$slate12',
+  // Text low constrast
+  textLowContrast: '$slate11',
+  // Heading (11 or 12?)
+  heading: '$slate11',
 }

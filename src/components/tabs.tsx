@@ -5,15 +5,18 @@ import {styled} from '~/theme'
 const StyledRoot = styled(TabsPrimitive.Root, {
   display: 'flex',
   flexDirection: 'column',
+  flex: 1,
+  // display: 'block',
+  height: '100%',
 })
 
 const StyledList = styled(TabsPrimitive.List, {
   display: 'flex',
   flexShrink: 0,
-  // borderBottomColor: '$gray600',
-  // borderBottomWidth: '$2',
-  // borderBottomStyle: 'solid',
-  backgroundColor: '$gray700',
+  borderBottomColor: '$gray6',
+  borderBottomWidth: '$2',
+  borderBottomStyle: 'solid',
+  backgroundColor: '$gray1',
 })
 
 const StyledTrigger = styled(TabsPrimitive.Trigger, {
@@ -27,30 +30,37 @@ const StyledTrigger = styled(TabsPrimitive.Trigger, {
   borderRadius: '$2',
   fontSize: '$m',
   lineHeight: 1,
-  color: '$white',
+  color: '$text',
   height: '$7',
   padding: '0 $7',
   margin: '$2',
   position: 'relative',
   userSelect: 'none',
-  backgroundColor: '$gray700',
+  backgroundColor: 'transparent',
 
   '&:focus': {
-    borderColor: '$gray500',
+    borderColor: '$primary7',
   },
 
   '&:hover': {
-    backgroundColor: '$gray800',
+    backgroundColor: '$primary4',
+    color: '$primary12',
   },
 
   '&[data-state="active"]': {
-    // borderColor: '$gray700',
-    backgroundColor: '$gray100',
-    color: '$text',
+    backgroundColor: '$primary5',
+    color: '$primary12',
   },
 })
 
-const StyledContent = styled(TabsPrimitive.Content, {})
+const StyledContent = styled(TabsPrimitive.Content, {
+  display: 'flex',
+  flex: 1,
+
+  '&[data-state="inactive"]': {
+    flex: 0,
+  },
+})
 
 export const Root = StyledRoot
 export const List = StyledList

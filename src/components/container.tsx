@@ -13,7 +13,7 @@ export const Container = styled(Flex, {
         backgroundColor: '$white',
       },
       gray: {
-        backgroundColor: '$gray100',
+        backgroundColor: '$gray200',
       },
       primary: {
         backgroundColor: '$gray50',

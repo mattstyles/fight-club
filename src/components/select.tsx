@@ -67,10 +67,11 @@ const StyledTrigger = styled(SelectPrimitive.SelectTrigger, {
   backgroundColor: '$white',
   color: '$text',
   '&:hover': {
-    backgroundColor: '$gray100',
+    // Should these be primary colours?
+    backgroundColor: '$gray4',
   },
   '&:focus': {
-    borderColor: '$gray400',
+    borderColor: '$gray7',
   },
 })
 
@@ -78,6 +79,7 @@ const StyledContent = styled(SelectPrimitive.Content, {
   overflow: 'hidden',
   backgroundColor: 'white',
   borderRadius: '$1',
+  // Should match up with a box-shadow scale and the appropriate colours
   boxShadow:
     '0px 10px 38px -10px rgba(22, 23, 24, 0.35), 0px 10px 20px -15px rgba(22, 23, 24, 0.2)',
 })
@@ -107,8 +109,8 @@ const StyledItem = styled(SelectPrimitive.Item, {
   alignItems: 'center',
 
   '&:focus': {
-    backgroundColor: '$gray700',
-    color: '$white',
+    backgroundColor: '$primary4',
+    color: '$primary12',
   },
 })
 

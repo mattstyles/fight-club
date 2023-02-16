@@ -12,14 +12,14 @@ const StyledRadio = styled(RadioGroupPrimitive.Item, {
   width: '$5',
   height: '$5',
   borderRadius: '$round',
-  borderColor: '$gray300',
+  borderColor: '$gray6',
   borderWidth: '2px',
   borderStyle: 'solid',
   '&:hover': {
-    backgroundColor: '$gray100',
+    backgroundColor: '$gray1',
   },
   '&:focus': {
-    borderColor: '$gray500',
+    borderColor: '$gray5',
   },
 })
 
@@ -36,7 +36,7 @@ const StyledIndicator = styled(RadioGroupPrimitive.Indicator, {
     width: 11,
     height: 11,
     borderRadius: '$round',
-    backgroundColor: '$primary',
+    backgroundColor: '$primary3',
   },
 })
 
@@ -54,9 +54,6 @@ const Label = styled('label', {
     color: {
       primary: {
         color: '$text',
-      },
-      onDark: {
-        color: '$white',
       },
     },
   },
