@@ -23,7 +23,7 @@ export const Button = styled('button', {
   },
 
   defaultVariants: {
-    color: 'primary',
+    color: 'neutral',
   },
 
   variants: {

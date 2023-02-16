@@ -1,8 +1,6 @@
-import {useState} from 'react'
-import {TinyComponentRouter} from 'tiny-component-router'
 import {useSnapshot} from 'valtio'
 
-import {Screen, Container, Text, Tabs} from '~/components'
+import {Screen, Toast, Tabs} from '~/components'
 import {PageTab, setPageTab} from '~/state/page'
 import {page} from '~/state'
 import {routes} from '~/routes'
@@ -34,6 +32,7 @@ export function App() {
           )
         })}
       </Tabs.Root>
+      <Toast.Viewport />
     </Screen>
   )
 }

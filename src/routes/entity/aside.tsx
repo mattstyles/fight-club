@@ -1,5 +1,5 @@
 import {useSnapshot} from 'valtio'
-import {useMemo} from 'react'
+import {useMemo, useState} from 'react'
 import {RocketIcon} from '@radix-ui/react-icons'
 
 import {
@@ -10,6 +10,7 @@ import {
   Text,
   ListSelect,
   Stack,
+  Toast,
 } from '~/components'
 
 import {state, setSelectedEntity, createNewEntity} from './state'
@@ -32,6 +33,8 @@ export function Aside() {
     })
   }, [entities])
 
+  const [isOpen, setIsOpen] = Toast.useToastState(false)
+
   return (
     <Container
       as='aside'
@@ -53,10 +56,30 @@ export function Aside() {
             isIcon
             size='small'
             color='neutral'
-            onClick={() => onCreateEntity()}>
+            onClick={() => {
+              onCreateEntity()
+              setIsOpen(false)
+              // This should be wrapped up in the hook, and cancelled when necessary, for now this will do fine though
+              setTimeout(() => {
+                setIsOpen(true)
+              }, 100)
+            }}>
             <RocketIcon />
           </DebouncedButton>
         </Flex>
+        {/** Note that this will disappear when the tab is changed as this root will be destroyed, this is fine, but we could be better about this and have it persist by dropping a toast into a queue and render that queue somewhere more global, probably within shell. Possibly this should be a priority queue to allow us to manipulate toasts. Extracting and just calling a function allows us to be a bit smarter with managing the timeouts rather than force the consumer to do so. Each toast type could represent a toast, you then fire the function with that type and it renders, or we could force passing a component. There is a subtlety though, try clicking the button multiple times and notice the animation fires, this is good, because these are the same message - in our queue we might want the concept of a message group such that newer toasts will replace one in the same group. */}
+        <Toast.Root
+          open={isOpen}
+          onOpenChange={setIsOpen}
+          type='background'
+          duration={3000}>
+          <Toast.Content>
+            <Stack orientation='h' gap='large' alignment='center'>
+              <RocketIcon />
+              <Text size='small'>New entity created</Text>
+            </Stack>
+          </Toast.Content>
+        </Toast.Root>
         <ListSelect.Group
           defaultValue={selectedEntity?.id ?? ''}
           value={selectedEntity?.id ?? ''}

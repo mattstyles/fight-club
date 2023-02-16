@@ -10,7 +10,7 @@ import {
 } from './theme/colors'
 import {space, radii} from './theme/scales'
 
-export const {styled, config, globalCss} = createStitches({
+export const {styled, config, globalCss, keyframes} = createStitches({
   theme: {
     colors: {
       ...baseColors,

@@ -20,3 +20,6 @@ export * as Select from './select'
 export {Checkbox} from './checkbox'
 export * as Tabs from './tabs'
 export * as ListSelect from './listsingleselect'
+
+// Modal
+export * as Toast from './toast'

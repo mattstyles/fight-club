@@ -11,7 +11,6 @@ export function Button({timeout = 500, onClick, ...buttonProps}: Props) {
   const [isDisabled, setIsDisabled] = useState<boolean>(false)
   const timeoutRef = useRef(0)
   useEffect(() => {
-    console.log('runing useeffect')
     return () => {
       // This doesn't make any sense to set the state here
       // setIsDisabled(false)
