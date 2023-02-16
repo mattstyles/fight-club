@@ -5,43 +5,7 @@ import {useSnapshot} from 'valtio'
 import {Screen, Container, Text, Tabs} from '~/components'
 import {PageTab, setPageTab} from '~/state/page'
 import {page} from '~/state'
-
-import {EntityRoute} from '~/routes/entity'
-import {AgentsRoute} from '~/routes/agents'
-import {SimulationRoute} from '~/routes/simulation'
-import {ResultsRoute} from '~/routes/results'
-
-type Route = {
-  trigger: string
-  tab: PageTab
-  Component: React.ReactNode
-}
-const routes = [
-  {
-    id: 'EntityRoute',
-    trigger: 'Entity',
-    tab: PageTab.Entity,
-    Component: EntityRoute,
-  },
-  {
-    id: 'AgentsRoute',
-    trigger: 'Agents',
-    tab: PageTab.Agents,
-    Component: AgentsRoute,
-  },
-  {
-    id: 'SimulationRoute',
-    trigger: 'Simulation',
-    tab: PageTab.Simulation,
-    Component: SimulationRoute,
-  },
-  {
-    id: 'ResultsRoute',
-    trigger: 'Results',
-    tab: PageTab.Results,
-    Component: ResultsRoute,
-  },
-]
+import {routes} from '~/routes'
 
 export function App() {
   const {tab} = useSnapshot(page)

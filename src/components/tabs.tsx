@@ -10,9 +10,9 @@ const StyledRoot = styled(TabsPrimitive.Root, {
 const StyledList = styled(TabsPrimitive.List, {
   display: 'flex',
   flexShrink: 0,
-  borderBottomColor: '$gray600',
-  borderBottomWidth: '$2',
-  borderBottomStyle: 'solid',
+  // borderBottomColor: '$gray600',
+  // borderBottomWidth: '$2',
+  // borderBottomStyle: 'solid',
   backgroundColor: '$gray700',
 })
 
@@ -30,7 +30,7 @@ const StyledTrigger = styled(TabsPrimitive.Trigger, {
   color: '$white',
   height: '$7',
   padding: '0 $7',
-  margin: '$2 $2',
+  margin: '$2',
   position: 'relative',
   userSelect: 'none',
   backgroundColor: '$gray700',
