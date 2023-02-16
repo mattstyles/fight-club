@@ -1,15 +1,9 @@
 import * as ToastPrimitive from '@radix-ui/react-toast'
 import {Cross2Icon} from '@radix-ui/react-icons'
 import * as React from 'react'
-import {useState} from 'react'
 
-import {Button} from './button'
+import {Button} from '../button'
 import {styled, keyframes} from '~/theme'
-
-// For now we'll just wrap useState, might have to get more creative with multiple toasts being visible at one time
-export function useToastState<T>(value: T) {
-  return useState<T>(value)
-}
 
 const hide = keyframes({
   from: {

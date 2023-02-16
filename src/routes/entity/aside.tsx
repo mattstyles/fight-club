@@ -33,7 +33,7 @@ export function Aside() {
     })
   }, [entities])
 
-  const [isOpen, setIsOpen] = Toast.useToastState(false)
+  const [isOpen, setIsOpen] = Toast.useSingleToastState(false)
 
   return (
     <Container
@@ -58,11 +58,12 @@ export function Aside() {
             color='neutral'
             onClick={() => {
               onCreateEntity()
-              setIsOpen(false)
-              // This should be wrapped up in the hook, and cancelled when necessary, for now this will do fine though
-              setTimeout(() => {
-                setIsOpen(true)
-              }, 100)
+              setIsOpen(true)
+              // This is now wrapped up in the hook
+              // setIsOpen(false)
+              // setTimeout(() => {
+              //   setIsOpen(true)
+              // }, 100)
             }}>
             <RocketIcon />
           </DebouncedButton>
