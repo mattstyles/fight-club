@@ -1,45 +1,77 @@
 import {useState} from 'react'
+import {TinyComponentRouter} from 'tiny-component-router'
+import {useSnapshot} from 'valtio'
 
-import {styled} from '~/theme'
-import {
-  Stack,
-  Text,
-  Heading,
-  Container,
-  Spacer,
-  Screen,
-  Button,
-  Radio,
-} from '~/components'
+import {Screen, Container, Text, Tabs} from '~/components'
+import {PageTab, setPageTab} from '~/state/page'
+import {page} from '~/state'
+
+import {EntityRoute} from '~/routes/entity'
+import {AgentsRoute} from '~/routes/agents'
+import {SimulationRoute} from '~/routes/simulation'
+import {ResultsRoute} from '~/routes/results'
+
+type Route = {
+  trigger: string
+  tab: PageTab
+  Component: React.ReactNode
+}
+const routes = [
+  {
+    id: 'EntityRoute',
+    trigger: 'Entity',
+    tab: PageTab.Entity,
+    Component: EntityRoute,
+  },
+  {
+    id: 'AgentsRoute',
+    trigger: 'Agents',
+    tab: PageTab.Agents,
+    Component: AgentsRoute,
+  },
+  {
+    id: 'SimulationRoute',
+    trigger: 'Simulation',
+    tab: PageTab.Simulation,
+    Component: SimulationRoute,
+  },
+  {
+    id: 'ResultsRoute',
+    trigger: 'Results',
+    tab: PageTab.Results,
+    Component: ResultsRoute,
+  },
+]
 
 export function App() {
-  const [radioSelect, setRadioSelect] = useState<string>('one')
+  const {tab} = useSnapshot(page)
   return (
     <Screen>
-      <Container>
-        <Heading>Hello world</Heading>
-        <Text>Some more text here</Text>
-        <Spacer size='medium' />
-        <Stack gap='large'>
-          <Stack>
-            <Text>One</Text>
-            <Text>Two</Text>
-            <Text>Three</Text>
-          </Stack>
-          <Stack orientation='h'>
-            <Button width='medium' onClick={() => alert('one')}>
-              One
-            </Button>
-            <Button width='medium' onClick={() => alert('two')}>
-              Two
-            </Button>
-          </Stack>
-          <Radio.Group value={radioSelect} onValueChange={setRadioSelect}>
-            <Radio.Item value='one'>One</Radio.Item>
-            <Radio.Item value='two'>Two</Radio.Item>
-          </Radio.Group>
-        </Stack>
-      </Container>
+      <Tabs.Root
+        defaultValue={page.tab}
+        onValueChange={(value: string) => {
+          // This is actually ok as we only ever pass in the enum, its just that we can not type the tabs component to understand the enum
+          setPageTab(value as PageTab)
+        }}>
+        <Tabs.List>
+          {routes.map(({trigger, tab, id}) => {
+            return (
+              <Tabs.Trigger key={id} value={tab}>
+                {trigger}
+              </Tabs.Trigger>
+            )
+          })}
+        </Tabs.List>
+        <Container>
+          {routes.map(({id, tab, Component}) => {
+            return (
+              <Tabs.Content key={id} value={tab}>
+                <Component />
+              </Tabs.Content>
+            )
+          })}
+        </Container>
+      </Tabs.Root>
     </Screen>
   )
 }

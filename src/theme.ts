@@ -2,7 +2,12 @@ import type * as Stitches from '@stitches/react'
 import {createStitches} from '@stitches/react'
 
 import {fonts, fontSizes, lineHeights} from './theme/typography'
-import {base as baseColors, grays, tokens as tokenColors} from './theme/colors'
+import {
+  base as baseColors,
+  grays,
+  tokens as tokenColors,
+  alphaLight,
+} from './theme/colors'
 import {space, radii} from './theme/scales'
 
 export const {styled, config, globalCss} = createStitches({
@@ -11,6 +16,7 @@ export const {styled, config, globalCss} = createStitches({
       ...baseColors,
       ...grays,
       ...tokenColors,
+      ...alphaLight,
     },
     fonts: fonts,
     space: space,

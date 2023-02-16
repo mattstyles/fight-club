@@ -17,6 +17,13 @@ export const grays = {
   gray900: 'hsl(220, 26%, 14%)',
 }
 
+export const alphaLight = {
+  alphaL100: 'hsla(0, 100%, 100%, 0)',
+  alphaL200: 'hsla(0, 100%, 100%, 0.2)',
+  alphaL300: 'hsla(0, 100%, 100%, 0.3)',
+  alphaL400: 'hsla(0, 100%, 100%, 0.4)',
+}
+
 export const tokens = {
   transparent: 'transparent',
   current: 'current',
