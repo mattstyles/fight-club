@@ -95,5 +95,43 @@ export const Button = styled('button', {
         minWidth: 180,
       },
     },
+    size: {
+      small: {},
+      medium: {},
+      large: {},
+    },
+    isIcon: {
+      true: {},
+    },
   },
+
+  compoundVariants: [
+    {
+      size: 'small',
+      isIcon: true,
+      css: {
+        width: '$5',
+        height: '$5',
+        padding: '$2',
+      },
+    },
+    {
+      size: 'medium',
+      isIcon: true,
+      css: {
+        width: '$6',
+        height: '$6',
+        padding: '$2',
+      },
+    },
+    {
+      size: 'large',
+      isIcon: true,
+      css: {
+        width: '$8',
+        height: '$8',
+        padding: '$2',
+      },
+    },
+  ],
 })

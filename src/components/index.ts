@@ -12,7 +12,7 @@ export {P} from './paragraph'
 
 // Control
 export {Button} from './button'
-export {IconButton} from './iconbutton'
+export {Button as DebouncedButton} from './debouncedButton'
 export {Input} from './input'
 export * as Radio from './radio'
 export {Slider} from './slider'

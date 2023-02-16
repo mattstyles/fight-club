@@ -13,7 +13,7 @@ type EntityListState = {
   // List of all possible entities
   entities: Map<string, Entity>
 
-  // The currently selected index to the list of entities
+  // The currently selected entity, which is a reference to the list item
   selectedEntity: Entity | null
 }
 export const state = proxy<EntityListState>({

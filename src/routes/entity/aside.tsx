@@ -4,7 +4,8 @@ import {RocketIcon} from '@radix-ui/react-icons'
 
 import {
   Container,
-  IconButton,
+  DebouncedButton,
+  Button,
   Flex,
   Text,
   ListSelect,
@@ -47,13 +48,14 @@ export function Aside() {
               Entities
             </Text>
           </Flex>
-          <IconButton
+          <DebouncedButton
             isCircular
+            isIcon
             size='small'
             color='neutral'
             onClick={() => onCreateEntity()}>
             <RocketIcon />
-          </IconButton>
+          </DebouncedButton>
         </Flex>
         <ListSelect.Group
           defaultValue={selectedEntity?.id ?? ''}
