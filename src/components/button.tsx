@@ -7,7 +7,7 @@ export const Button = styled('button', {
   justifyContent: 'center',
   borderRadius: '$1',
   borderColor: '$transparent',
-  borderWidth: '2px',
+  borderWidth: '$2',
   borderStyle: 'solid',
   padding: '0 $5',
   height: '$7',

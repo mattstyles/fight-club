@@ -14,11 +14,18 @@ const StyledRadio = styled(RadioGroupPrimitive.Item, {
   width: '100%',
   backgroundColor: 'transparent',
   borderRadius: '$2',
+  borderColor: '$transparent',
+  borderWidth: '2px',
+  borderStyle: 'solid',
   color: '$text',
 
   '&:hover': {
     backgroundColor: '$primary4',
     color: '$primary12',
+  },
+
+  '&:focus': {
+    borderColor: '$primary7',
   },
 
   '&[data-state="checked"]': {

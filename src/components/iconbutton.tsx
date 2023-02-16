@@ -4,13 +4,16 @@ import {Button} from './button'
 export const IconButton = styled(Button, {
   defaultVariants: {
     size: 'medium',
-    iconColor: 'primary',
+    iconColor: 'normal',
   },
 
   variants: {
     iconColor: {
-      primary: {
+      normal: {
         color: '$text',
+      },
+      primary: {
+        color: '$purple12',
       },
       muted: {
         color: '$gray400',

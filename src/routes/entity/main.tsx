@@ -19,17 +19,9 @@ export function Main() {
 
   return (
     <Container>
+      <Text>{selectedEntity.id}</Text>
+      <Text>{selectedEntity.name}</Text>
       <Text>{selectedEntity.health}</Text>
-      <Stack>
-        <Button>Hello world</Button>
-        <Button color='white'>White button</Button>
-        <Button color='transparent'>Transparent</Button>
-        <Button color='primary'>Primary</Button>
-        <Button color='neutral'>Neutral</Button>
-        <Button color='primary' disabled>
-          Primary
-        </Button>
-      </Stack>
     </Container>
   )
 }

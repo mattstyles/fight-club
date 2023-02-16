@@ -1,14 +1,25 @@
 import {useSnapshot} from 'valtio'
 import {useMemo} from 'react'
+import {RocketIcon} from '@radix-ui/react-icons'
 
-import {Container, Button, Stack, Text, ListSelect} from '~/components'
-import {Entity} from '~/simulation/entity'
+import {
+  Container,
+  IconButton,
+  Flex,
+  Text,
+  ListSelect,
+  Stack,
+} from '~/components'
 
-import {state, setSelectedEntity} from './state'
+import {state, setSelectedEntity, createNewEntity} from './state'
 
 function onSelectEntity(id: string) {
   const entity = state.entities.get(id)
   setSelectedEntity(entity ?? null)
+}
+
+function onCreateEntity() {
+  createNewEntity()
 }
 
 export function Aside() {
@@ -29,20 +40,34 @@ export function Aside() {
         minWidth: 240,
         maxWidth: 320,
       }}>
-      <Text type='listHeading' css={{paddingLeft: '$2'}}>
-        Entities
-      </Text>
-      <ListSelect.Group
-        defaultValue={selectedEntity?.id ?? ''}
-        onValueChange={onSelectEntity}>
-        {sortedEntities.map((entity) => {
-          return (
-            <ListSelect.Item key={entity.id} value={entity.id}>
-              {entity.name}
-            </ListSelect.Item>
-          )
-        })}
-      </ListSelect.Group>
+      <Stack gap='large'>
+        <Flex orientation='h' alignment='center'>
+          <Flex size='full'>
+            <Text type='listHeading' css={{paddingLeft: '$2'}}>
+              Entities
+            </Text>
+          </Flex>
+          <IconButton
+            isCircular
+            size='small'
+            color='neutral'
+            onClick={() => onCreateEntity()}>
+            <RocketIcon />
+          </IconButton>
+        </Flex>
+        <ListSelect.Group
+          defaultValue={selectedEntity?.id ?? ''}
+          value={selectedEntity?.id ?? ''}
+          onValueChange={onSelectEntity}>
+          {sortedEntities.map((entity) => {
+            return (
+              <ListSelect.Item key={entity.id} value={entity.id}>
+                {entity.name}
+              </ListSelect.Item>
+            )
+          })}
+        </ListSelect.Group>
+      </Stack>
     </Container>
   )
 }
