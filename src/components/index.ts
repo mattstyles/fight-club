@@ -28,3 +28,4 @@ export * as Toast from './toast'
 // Misc
 export {ErrorFallback} from './error'
 export {Loading, InlineLoading} from './loading'
+export {Reveal} from './reveal'

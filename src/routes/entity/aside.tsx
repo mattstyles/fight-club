@@ -7,13 +7,14 @@ import useSWR from 'swr'
 import {
   Container,
   DebouncedButton,
-  Button,
   Flex,
   Text,
   ListSelect,
   Stack,
   Toast,
   InlineLoading,
+  Loading,
+  Reveal,
 } from '~/components'
 
 import {createNewEntity, state} from './state'
@@ -60,10 +61,14 @@ function Content({selectedId, setSelectedId}: AsideProps) {
   //   })
   // }, [entities])
 
+  const [localSelected, setLocalSelected] = useState(selectedId)
+
   // First param is `isPending`, IDB is always fast but we could disable the UI here somehow. Due to startTransition we will show old UI for a bit which will be interative, which _could_ be confusing if slow. This way avoids flashing of a loading spinner though.
-  const [_, startTransition] = useTransition()
+  // Probably a good idea to show some sort of spinner (after a delay (which could be done in CSS)) but we would need more control over what happens in the ListItem for that
+  const [isPending, startTransition] = useTransition()
   const onSelectEntity = useCallback(
     (id: string) => {
+      setLocalSelected(id)
       startTransition(() => {
         setSelectedId(id)
       })
@@ -81,7 +86,7 @@ function Content({selectedId, setSelectedId}: AsideProps) {
   }, [setIsOpen, setSelectedId])
 
   return (
-    <Stack gap='large'>
+    <Stack gap='medium'>
       <CreateEntityToast isOpen={isOpen} setIsOpen={setIsOpen} />
       <Heading onCreateEntity={onCreateEntity} setSelectedId={setSelectedId} />
       {entities.length === 0 && (
@@ -91,13 +96,22 @@ function Content({selectedId, setSelectedId}: AsideProps) {
       )}
       {entities.length > 0 && (
         <ListSelect.Group
-          defaultValue={selectedId}
-          value={selectedId}
+          defaultValue={localSelected}
+          value={localSelected}
           onValueChange={onSelectEntity}>
           {entities.map((entity) => {
             return (
               <ListSelect.Item key={entity.id} value={entity.id}>
-                {entity.name}
+                <Flex
+                  orientation='h'
+                  alignment='center'
+                  justify='spread'
+                  size='full'>
+                  {entity.name}
+                  <Reveal isShowing={isPending && entity.id === localSelected}>
+                    <Loading />
+                  </Reveal>
+                </Flex>
               </ListSelect.Item>
             )
           })}

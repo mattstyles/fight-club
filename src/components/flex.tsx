@@ -18,6 +18,9 @@ export const Flex = styled('div', {
       center: {
         justifyContent: 'center',
       },
+      spread: {
+        justifyContent: 'space-between',
+      },
     },
     orientation: {
       h: {

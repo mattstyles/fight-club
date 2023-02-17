@@ -36,6 +36,8 @@ const StyledRadio = styled(RadioGroupPrimitive.Item, {
 })
 
 const Label = styled('label', {
+  display: 'flex',
+  flex: 1,
   fontSize: '$m',
   lineHeight: '$3',
   userSelect: 'none',
@@ -45,7 +47,7 @@ const Label = styled('label', {
 type ItemProps = React.ComponentProps<typeof RadioGroupPrimitive.Item>
 
 type Props = {
-  children: string
+  children: React.ReactNode
 } & ItemProps
 
 export function Item({children, value, ...itemProps}: Props) {
