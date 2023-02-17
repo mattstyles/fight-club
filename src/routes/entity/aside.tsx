@@ -1,7 +1,6 @@
-import type {Entity} from '~/simulation/entity'
-
 import {useSnapshot} from 'valtio'
-import {Suspense, useMemo, useState, useCallback} from 'react'
+import * as React from 'react'
+import {Suspense, useMemo, useState, useCallback, useTransition} from 'react'
 import {RocketIcon} from '@radix-ui/react-icons'
 import useSWR from 'swr'
 
@@ -17,18 +16,13 @@ import {
   InlineLoading,
 } from '~/components'
 
-import {
-  state,
-  setSelectedEntity,
-  createNewEntity,
-  persistedState,
-} from './state'
+import {createNewEntity, persistedState} from './state'
 
-function onSelectEntity(id: string) {
-  setSelectedEntity(id)
+type AsideProps = {
+  selectedId: string
+  setSelectedId: React.Dispatch<React.SetStateAction<string>>
 }
-
-export function Aside() {
+export function Aside({selectedId, setSelectedId}: AsideProps) {
   return (
     <Container
       as='aside'
@@ -39,16 +33,18 @@ export function Aside() {
         maxWidth: 320,
       }}>
       <Suspense fallback={<InlineLoading />}>
-        <Content />
+        <Content selectedId={selectedId} setSelectedId={setSelectedId} />
       </Suspense>
     </Container>
   )
 }
 
 // @TODO add scroll area to deal with lots of entities, this is fairly low priority as it is unlikely ot happen
-function Content() {
-  const {selectedEntityId} = useSnapshot(state)
-
+type AsideContentProps = {
+  selectedId: string
+  setSelectedId: React.Dispatch<React.SetStateAction<string>>
+}
+function Content({selectedId, setSelectedId}: AsideContentProps) {
   // @TODO IDB will sort by id on entry (I think), but we might want to sort by name. We could also do this with an index. Might get interesting for puts though.
   const {data: entities, mutate} = useSWR(
     'all-entities',
@@ -68,12 +64,23 @@ function Content() {
     await mutate()
   }, [mutate])
 
+  // First param is `isPending`, IDB is always fast but we could disable the UI here somehow. Due to startTransition we will show old UI for a bit which will be interative, which _could_ be confusing if slow. This way avoids flashing of a loading spinner though.
+  const [_, startTransition] = useTransition()
+  const onSelectEntity = useCallback(
+    (id: string) => {
+      startTransition(() => {
+        setSelectedId(id)
+      })
+    },
+    [setSelectedId]
+  )
+
   return (
     <Stack gap='large'>
-      <Heading onUpdate={onUpdate} />
+      <Heading onUpdate={onUpdate} setSelectedId={setSelectedId} />
       <ListSelect.Group
-        defaultValue={selectedEntityId || ''}
-        value={selectedEntityId || ''}
+        defaultValue={selectedId}
+        value={selectedId}
         onValueChange={onSelectEntity}>
         {entities.map((entity) => {
           return (
@@ -89,15 +96,20 @@ function Content() {
 
 type AsideHeadingProps = {
   onUpdate: () => Promise<void>
+  setSelectedId: React.Dispatch<React.SetStateAction<string>>
 }
-function Heading({onUpdate}: AsideHeadingProps) {
+function Heading({onUpdate, setSelectedId}: AsideHeadingProps) {
   const [isOpen, setIsOpen] = Toast.useSingleToastState(false)
 
+  const [_, startTransition] = useTransition()
   const onCreateEntity = useCallback(async () => {
-    await createNewEntity()
-    setIsOpen(true)
+    const entity = await createNewEntity()
     await onUpdate()
-  }, [setIsOpen])
+    setIsOpen(true)
+    startTransition(() => {
+      setSelectedId(entity.id)
+    })
+  }, [setIsOpen, setSelectedId, onUpdate])
 
   return (
     <Flex orientation='h' alignment='center'>

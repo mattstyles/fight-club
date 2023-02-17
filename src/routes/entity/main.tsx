@@ -5,20 +5,25 @@ import useSWR from 'swr'
 import {styled} from '~/theme'
 import {Container, Stack, Text, Button, InlineLoading} from '~/components'
 
-import {state, persistedState} from './state'
+import {persistedState} from './state'
 
-export function Main() {
+type MainProps = {
+  selectedId: string
+}
+export function Main({selectedId}: MainProps) {
   return (
     <Suspense fallback={<InlineLoading />}>
-      <Content />
+      <Content selectedId={selectedId} />
     </Suspense>
   )
 }
 
-function Content() {
-  const {selectedEntityId} = useSnapshot(state)
+type MainContentProps = {
+  selectedId: string
+}
+function Content({selectedId}: MainContentProps) {
   const {data: entity} = useSWR(
-    selectedEntityId,
+    selectedId,
     async (key) => {
       return await persistedState.get(key)
     },
