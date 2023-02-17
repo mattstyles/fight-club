@@ -37,6 +37,7 @@ const StyledTrigger = styled(TabsPrimitive.Trigger, {
   position: 'relative',
   userSelect: 'none',
   backgroundColor: 'transparent',
+  transition: 'background 200ms ease-in-out',
 
   '&:focus': {
     borderColor: '$primary7',

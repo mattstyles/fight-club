@@ -16,7 +16,7 @@ import {
   InlineLoading,
 } from '~/components'
 
-import {createNewEntity, persistedState} from './state'
+import {createNewEntity, state} from './state'
 
 type AsideProps = {
   selectedId: string
@@ -49,7 +49,7 @@ function Content({selectedId, setSelectedId}: AsideProps) {
   const {data: entities, mutate} = useSWR(
     'all-entities',
     async () => {
-      return await persistedState.getAll()
+      return await state.getAll()
     },
     {suspense: true}
   )
@@ -77,9 +77,7 @@ function Content({selectedId, setSelectedId}: AsideProps) {
     const entity = await createNewEntity()
     await mutate()
     setIsOpen(true)
-    startTransition(() => {
-      setSelectedId(entity.id)
-    })
+    onSelectEntity(entity.id)
   }, [setIsOpen, setSelectedId])
 
   return (

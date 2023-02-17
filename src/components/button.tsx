@@ -12,6 +12,7 @@ export const Button = styled('button', {
   padding: '0 $5',
   height: '$7',
   letterSpacing: '-0.2px',
+  transition: 'background 200ms ease-in-out',
 
   '&:disabled': {
     backgroundColor: '$gray5',

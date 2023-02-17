@@ -3,7 +3,7 @@ import useSWR from 'swr'
 
 import {Container, Text, InlineLoading} from '~/components'
 
-import {persistedState} from './state'
+import {state} from './state'
 
 type MainProps = {
   selectedId: string
@@ -23,7 +23,7 @@ function Content({selectedId}: MainContentProps) {
   const {data: entity} = useSWR(
     selectedId,
     async (key) => {
-      return await persistedState.get(key)
+      return await state.get(key)
     },
     {suspense: true}
   )

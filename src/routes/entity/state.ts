@@ -6,11 +6,11 @@ import {PersistData} from '~/state/persist'
 export async function createNewEntity(): Promise<Entity> {
   let entity = create()
   // This could technically create an infinite loop but 8^36 is a big number of possible ids...
-  while ((await persistedState.get(entity.id)) != null) {
+  while ((await state.get(entity.id)) != null) {
     entity = create()
   }
-  await persistedState.set(entity)
+  await state.set(entity)
   return entity
 }
 
-export const persistedState = new PersistData<Entity>('fight-club', 'entities')
+export const state = new PersistData<Entity>('fight-club', 'entities')

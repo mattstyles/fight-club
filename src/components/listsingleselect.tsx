@@ -18,6 +18,7 @@ const StyledRadio = styled(RadioGroupPrimitive.Item, {
   borderWidth: '2px',
   borderStyle: 'solid',
   color: '$text',
+  transition: 'background 200ms ease-in-out',
 
   '&:hover': {
     backgroundColor: '$primary4',
