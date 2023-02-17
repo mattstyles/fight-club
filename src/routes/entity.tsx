@@ -2,10 +2,8 @@ import {Suspense, useState} from 'react'
 import {ErrorBoundary} from 'react-error-boundary'
 
 import {
-  Stack,
   Flex,
   Spacer,
-  Button,
   ErrorFallback,
   Container,
   InlineLoading,
@@ -16,7 +14,7 @@ import {Main} from './entity/main'
 
 export function EntityRoute() {
   const [selectedId, setSelectedId] = useState<string>('')
-  console.log(selectedId)
+
   return (
     <Container size='full' padding='none'>
       <ErrorBoundary FallbackComponent={ErrorFallback}>

@@ -1,9 +1,7 @@
 import {Suspense} from 'react'
-import {useSnapshot} from 'valtio'
 import useSWR from 'swr'
 
-import {styled} from '~/theme'
-import {Container, Stack, Text, Button, InlineLoading} from '~/components'
+import {Container, Text, InlineLoading} from '~/components'
 
 import {persistedState} from './state'
 

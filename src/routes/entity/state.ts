@@ -1,8 +1,5 @@
 import type {Entity} from '~/simulation/entity'
 
-import {proxy} from 'valtio'
-import {proxyMap} from 'valtio/utils'
-
 import {create} from '~/simulation/entity'
 import {PersistData} from '~/state/persist'
 
