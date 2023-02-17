@@ -18,6 +18,9 @@ export const Text = styled('span', {
         fontWeight: 700,
         fontVariantCaps: 'all-small-caps',
       },
+      mono: {
+        fontFamily: '$mono',
+      },
     },
     color: {
       highContrast: {

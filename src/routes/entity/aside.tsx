@@ -63,14 +63,13 @@ function Content() {
   //   })
   // }, [entities])
 
+  const onUpdate = useCallback(async () => {
+    await mutate()
+  }, [mutate])
+
   return (
     <Stack gap='large'>
-      <Heading
-        onUpdate={() => {
-          // We could be more optimistic here but IDB is fast so lets let it run
-          mutate()
-        }}
-      />
+      <Heading onUpdate={onUpdate} />
       <ListSelect.Group
         defaultValue={selectedEntityId || ''}
         value={selectedEntityId || ''}
@@ -88,7 +87,7 @@ function Content() {
 }
 
 type AsideHeadingProps = {
-  onUpdate: () => void
+  onUpdate: () => Promise<void>
 }
 function Heading({onUpdate}: AsideHeadingProps) {
   const [isOpen, setIsOpen] = Toast.useSingleToastState(false)
@@ -96,7 +95,7 @@ function Heading({onUpdate}: AsideHeadingProps) {
   const onCreateEntity = useCallback(async () => {
     await createNewEntity()
     setIsOpen(true)
-    onUpdate()
+    await onUpdate()
   }, [setIsOpen])
 
   return (

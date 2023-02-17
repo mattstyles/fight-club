@@ -8,9 +8,15 @@ export const Flex = styled('div', {
   },
 
   variants: {
+    // Alignment and justification will need flipping based on orientation, use compound variants
     alignment: {
       center: {
         alignItems: 'center',
+      },
+    },
+    justify: {
+      center: {
+        justifyContent: 'center',
       },
     },
     orientation: {

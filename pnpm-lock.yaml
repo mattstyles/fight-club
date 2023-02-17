@@ -19,6 +19,7 @@ specifiers:
   prettier: ^2.8.4
   react: ^18.2.0
   react-dom: ^18.2.0
+  react-error-boundary: ^3.1.4
   swr: ^2.0.3
   typescript: ^4.9.3
   valtio: ^1.10.2
@@ -39,6 +40,7 @@ dependencies:
   just-random-integer: 4.2.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  react-error-boundary: 3.1.4_react@18.2.0
   swr: 2.0.3_react@18.2.0
   valtio: 1.10.2_react@18.2.0
 
@@ -1230,6 +1232,16 @@ packages:
       loose-envify: 1.4.0
       react: 18.2.0
       scheduler: 0.23.0
+    dev: false
+
+  /react-error-boundary/3.1.4_react@18.2.0:
+    resolution: {integrity: sha512-uM9uPzZJTF6wRQORmSrvOIgt4lJ9MC1sNgEOj2XGsDTRE4kmpWxg7ENK9EWNKJRMAOY9z0MuF4yIfl6gp4sotA==}
+    engines: {node: '>=10', npm: '>=6'}
+    peerDependencies:
+      react: '>=16.13.1'
+    dependencies:
+      '@babel/runtime': 7.20.13
+      react: 18.2.0
     dev: false
 
   /react-is/17.0.2:

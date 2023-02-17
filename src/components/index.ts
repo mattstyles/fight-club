@@ -23,3 +23,6 @@ export * as ListSelect from './listsingleselect'
 
 // Modal
 export * as Toast from './toast'
+
+// Misc
+export {ErrorFallback} from './error'
