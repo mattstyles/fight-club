@@ -14,6 +14,7 @@ import {
   ListSelect,
   Stack,
   Toast,
+  InlineLoading,
 } from '~/components'
 
 import {
@@ -37,7 +38,7 @@ export function Aside() {
         minWidth: 240,
         maxWidth: 320,
       }}>
-      <Suspense fallback={<div>Aside suspending...</div>}>
+      <Suspense fallback={<InlineLoading />}>
         <Content />
       </Suspense>
     </Container>

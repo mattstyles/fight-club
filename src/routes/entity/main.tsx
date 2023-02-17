@@ -2,13 +2,14 @@ import {Suspense} from 'react'
 import {useSnapshot} from 'valtio'
 import useSWR from 'swr'
 
-import {Container, Stack, Text, Button} from '~/components'
+import {styled} from '~/theme'
+import {Container, Stack, Text, Button, InlineLoading} from '~/components'
 
 import {state, persistedState} from './state'
 
 export function Main() {
   return (
-    <Suspense fallback={<div>Main suspending</div>}>
+    <Suspense fallback={<InlineLoading />}>
       <Content />
     </Suspense>
   )
@@ -26,7 +27,7 @@ function Content() {
 
   if (entity == null) {
     return (
-      <Container>
+      <Container size='full'>
         <Text>
           Use the list to select an entity to edit, or create a new one.
         </Text>

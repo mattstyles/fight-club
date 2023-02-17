@@ -5,20 +5,30 @@ import useSWR from 'swr'
 import {openDB} from 'idb'
 import {ErrorBoundary} from 'react-error-boundary'
 
-import {Stack, Button, ErrorFallback} from '~/components'
+import {
+  Stack,
+  Flex,
+  Spacer,
+  Button,
+  ErrorFallback,
+  Container,
+} from '~/components'
 
 import {Aside} from './entity/aside'
 import {Main} from './entity/main'
 
 export function EntityRoute() {
   return (
-    <ErrorBoundary FallbackComponent={ErrorFallback}>
-      <Suspense fallback={<div>Suspending...</div>}>
-        <Stack orientation='h' gap='large'>
-          <Aside />
-          <Main />
-        </Stack>
-      </Suspense>
-    </ErrorBoundary>
+    <Container size='full' padding='none'>
+      <ErrorBoundary FallbackComponent={ErrorFallback}>
+        <Suspense fallback={<div>Suspending...</div>}>
+          <Flex orientation='h'>
+            <Aside />
+            <Spacer size='large' />
+            <Main />
+          </Flex>
+        </Suspense>
+      </ErrorBoundary>
+    </Container>
   )
 }

@@ -4,6 +4,7 @@ export {Container} from './container'
 export {Screen} from './screen'
 export {Stack} from './stack'
 export {Spacer} from './spacer'
+export {Center} from './center'
 
 // Typography
 export {Heading} from './heading'
@@ -26,3 +27,4 @@ export * as Toast from './toast'
 
 // Misc
 export {ErrorFallback} from './error'
+export {Loading, InlineLoading} from './loading'
