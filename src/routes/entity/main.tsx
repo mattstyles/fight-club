@@ -1,13 +1,30 @@
+import {Suspense} from 'react'
 import {useSnapshot} from 'valtio'
+import useSWR from 'swr'
 
 import {Container, Stack, Text, Button} from '~/components'
 
-import {state} from './state'
+import {state, persistedState} from './state'
 
 export function Main() {
-  const {selectedEntity} = useSnapshot(state)
+  return (
+    <Suspense fallback={<div>Main suspending</div>}>
+      <Content />
+    </Suspense>
+  )
+}
 
-  if (selectedEntity == null) {
+function Content() {
+  const {selectedEntityId} = useSnapshot(state)
+  const {data: entity} = useSWR(
+    selectedEntityId,
+    async (key) => {
+      return await persistedState.get(key)
+    },
+    {suspense: true}
+  )
+
+  if (entity == null) {
     return (
       <Container>
         <Text>
@@ -19,9 +36,9 @@ export function Main() {
 
   return (
     <Container>
-      <Text>{selectedEntity.id}</Text>
-      <Text>{selectedEntity.name}</Text>
-      <Text>{selectedEntity.health}</Text>
+      <Text>{entity.id}</Text>
+      <Text>{entity.name}</Text>
+      <Text>{entity.health}</Text>
     </Container>
   )
 }

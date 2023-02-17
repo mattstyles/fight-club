@@ -1,36 +1,34 @@
+import type {Entity} from '~/simulation/entity'
+
 import {proxy} from 'valtio'
 import {proxyMap} from 'valtio/utils'
 
-import {Entity} from '~/simulation/entity'
-
-const defaultState = proxyMap<string, Entity>()
-for (let i = 0; i < 2; i++) {
-  let ent = new Entity()
-  defaultState.set(ent.id, ent)
-}
+import {create} from '~/simulation/entity'
+import {PersistData} from '~/state/persist'
 
 type EntityListState = {
-  // List of all possible entities
-  entities: Map<string, Entity>
-
   // The currently selected entity, which is a reference to the list item
-  selectedEntity: Entity | null
+  selectedEntityId: string | null
 }
+//  Shame that we can not treat valtio and persisted state as the same thing, just with some persisted and some not. There may be a way to do that, although for now as it affects data fetching and immediacy we will leave them separate.
 export const state = proxy<EntityListState>({
-  entities: defaultState,
-  selectedEntity: null,
+  selectedEntityId: null,
 })
 
-export function setSelectedEntity(entity: Entity | null) {
-  state.selectedEntity = entity
+export function setSelectedEntity(id: string | null) {
+  state.selectedEntityId = id
 }
 
-export function createNewEntity() {
-  let entity = new Entity()
+export async function createNewEntity(): Promise<Entity> {
+  let entity = create()
   // This could technically create an infinite loop but 8^36 is a big number of possible ids...
-  while (state.entities.has(entity.id)) {
-    entity = new Entity()
+  while ((await persistedState.get(entity.id)) != null) {
+    entity = create()
   }
-  state.entities.set(entity.id, entity)
-  setSelectedEntity(entity)
+  await persistedState.set(entity)
+  setSelectedEntity(entity.id)
+
+  return entity
 }
+
+export const persistedState = new PersistData<Entity>('fight-club', 'entities')

@@ -18,9 +18,11 @@
     "@radix-ui/react-tabs": "^1.0.2",
     "@radix-ui/react-toast": "^1.1.2",
     "@stitches/react": "^1.2.8",
+    "idb": "^7.1.1",
     "just-random-integer": "^4.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "swr": "^2.0.3",
     "valtio": "^1.10.2"
   },
   "devDependencies": {

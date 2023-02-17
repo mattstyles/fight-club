@@ -1,15 +1,22 @@
-import {proxy, useSnapshot} from 'valtio'
+import type {Entity} from '~/simulation/entity'
 
-import {Stack} from '~/components'
+import {Suspense, useCallback} from 'react'
+import useSWR from 'swr'
+import {openDB} from 'idb'
+
+import {Stack, Button} from '~/components'
 
 import {Aside} from './entity/aside'
 import {Main} from './entity/main'
+import {create} from '~/simulation/entity'
 
 export function EntityRoute() {
   return (
-    <Stack orientation='h' gap='large'>
-      <Aside />
-      <Main />
-    </Stack>
+    <Suspense fallback={<div>Suspending...</div>}>
+      <Stack orientation='h' gap='large'>
+        <Aside />
+        <Main />
+      </Stack>
+    </Suspense>
   )
 }
