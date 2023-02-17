@@ -1,4 +1,6 @@
 import {useState, useRef, useEffect} from 'react'
+import {proxy} from 'valtio'
+import {proxyMap} from 'valtio/utils'
 
 // Single toast state, for use in-situ.
 // Requires a little more manual effort but colocates the toast with the trigger and allows flexibility to add whatever contents you want
