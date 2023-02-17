@@ -88,7 +88,7 @@ function Content({selectedId, setSelectedId}: AsideProps) {
   return (
     <Stack gap='medium'>
       <CreateEntityToast isOpen={isOpen} setIsOpen={setIsOpen} />
-      <Heading onCreateEntity={onCreateEntity} setSelectedId={setSelectedId} />
+      <Heading onCreateEntity={onCreateEntity} />
       {entities.length === 0 && (
         <DebouncedButton color='neutral' onClick={onCreateEntity}>
           Create new entity
@@ -123,9 +123,8 @@ function Content({selectedId, setSelectedId}: AsideProps) {
 
 type AsideHeadingProps = {
   onCreateEntity: () => Promise<void>
-  setSelectedId: React.Dispatch<React.SetStateAction<string>>
 }
-function Heading({onCreateEntity, setSelectedId}: AsideHeadingProps) {
+function Heading({onCreateEntity}: AsideHeadingProps) {
   return (
     <Flex orientation='h' alignment='center'>
       <Flex size='full'>
