@@ -7,6 +7,7 @@ import {state} from './state'
 
 type MainProps = {
   selectedId: string
+  onCreateEntity: () => Promise<void>
 }
 export function Main({selectedId}: MainProps) {
   return (
