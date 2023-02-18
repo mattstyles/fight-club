@@ -1,7 +1,9 @@
 import type {Entity} from '~/simulation/entity'
 
-import {Input, Stack, Text, Spacer} from '~/components'
+import {mutate} from 'swr'
 import {ChangeEventHandler} from 'react'
+
+import {Input, Stack, Text, Spacer} from '~/components'
 
 type Props = {
   entity: Entity
@@ -21,6 +23,8 @@ export function EditEntity({entity, onEdit}: Props) {
               const value = event.target.value
               entity.name = value
               onEdit(entity)
+              /// This is a bit crap as its an unusual side effect
+              mutate('all-entities')
             }}
           />
           <EditNumber

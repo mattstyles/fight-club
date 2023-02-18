@@ -32,7 +32,6 @@ function Content({selectedId, actions}: MainProps) {
   )
   const onEdit = useCallback(
     async (entity: Entity) => {
-      console.log('change event', entity)
       await state.set(entity)
       await mutate(entity)
     },
