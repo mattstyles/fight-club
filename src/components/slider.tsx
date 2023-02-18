@@ -13,7 +13,6 @@ const StyledRoot = styled(SliderPrimitive.Root, {
   '&[data-orientation="horizontal"]': {
     height: 20,
   },
-
   '&[data-orientation="vertical"]': {
     flexDirection: 'column',
     width: 20,
@@ -22,20 +21,27 @@ const StyledRoot = styled(SliderPrimitive.Root, {
 })
 
 const StyledTrack = styled(SliderPrimitive.Track, {
-  backgroundColor: '$black',
+  backgroundColor: '$primary3',
   position: 'relative',
   flexGrow: 1,
   borderRadius: '9999px',
 
   '&[data-orientation="horizontal"]': {height: 3},
   '&[data-orientation="vertical"]': {width: 3},
+  '&[data-disabled]': {
+    backgroundColor: '$gray3',
+  },
 })
 
 const StyledRange = styled(SliderPrimitive.Range, {
   position: 'absolute',
-  backgroundColor: 'white',
+  backgroundColor: '$primary6',
   borderRadius: '9999px',
   height: '100%',
+
+  '&[data-disabled]': {
+    backgroundColor: '$gray4',
+  },
 })
 
 const StyledThumb = styled(SliderPrimitive.Thumb, {
@@ -43,29 +49,41 @@ const StyledThumb = styled(SliderPrimitive.Thumb, {
   display: 'block',
   width: 20,
   height: 20,
-  backgroundColor: 'white',
+  backgroundColor: '$primary7',
   boxShadow: `0 2px 10px rgba(0, 0, 0, 0.2)`,
   borderRadius: 10,
-  '&:hover': {backgroundColor: '$gray5'},
+  '&:hover': {backgroundColor: '$primary8'},
   '&:focus': {boxShadow: `0 0 0 5px rgba(0, 0, 0, 0.2)`},
+  '&[data-disabled]': {
+    backgroundColor: '$gray5',
+  },
 })
 
 type Props = {
-  defaultValue: number
+  value: number
   min: number
   max: number
   step: number
   onChange: (value: number) => void
+  disabled?: boolean
 }
-export function Slider({defaultValue, min, max, onChange, step}: Props) {
+export function Slider({
+  value,
+  min,
+  max,
+  onChange,
+  step,
+  disabled = false,
+}: Props) {
   return (
     <StyledRoot
       {...{
-        defaultValue: [defaultValue],
+        value: [value],
         min,
         max,
         step,
         onValueChange: ([value]) => onChange(value),
+        disabled,
       }}>
       <StyledTrack>
         <StyledRange />

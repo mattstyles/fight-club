@@ -75,6 +75,7 @@ export function EditEntity({entity, update}: Props) {
           </Stack>
           <Spacer size='medium' />
           <Text type='listHeading'>Moveset</Text>
+          <div />
           <EditGenome entity={entity} update={update} />
         </Stack>
       </form>

@@ -55,19 +55,27 @@ function EditGene({entity, update, moveId}: EditGeneProps) {
     },
     [update, entity]
   )
+
   const isActive = isInMask(move.mask, entity.genomeMask)
   const value = entity.genome[move.gene]
 
   return (
     <Flex size='full' orientation='h' justify='spread'>
-      <Stack orientation='h'>
+      <Flex orientation='h' size='full'>
         <Checkbox id={move.name} checked={isActive} onChange={onSelect} />
-        <Text as='label' htmlFor={move.name}>
-          {move.name}
-        </Text>
-      </Stack>
+        <Spacer direction='h' size='small' />
+        <Flex size='full'>
+          <Text
+            as='label'
+            htmlFor={move.name}
+            color={isActive ? 'highContrast' : 'lowContrast'}>
+            {move.name}
+          </Text>
+        </Flex>
+      </Flex>
       <Slider
-        defaultValue={value}
+        disabled={!isActive}
+        value={isActive ? value : 0}
         min={0}
         max={1}
         step={0.05}
