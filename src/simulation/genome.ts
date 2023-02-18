@@ -4,4 +4,32 @@
  */
 
 // We will use a tuple as give TS more hints about what we are using it for, although I think we might need a more complex structure here
-export type Genome = [number, number, number, number, number]
+export type Genome = [
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number
+]
+
+export enum Moveset {
+  // Does not block or attack, but regains a lot of stamina
+  Rest = 1,
+  // Weak block move, but regains a little stamina
+  Parry = 2,
+  // Block some incoming direct damage, uses stamina
+  Block = 4,
+  // Weak direct attack, uses some stamina
+  Strike = 8,
+  // Strong direct attack, uses a lot of stamina
+  Bash = 16,
+  // Applies a weakness debuff to opponent, uses some mana
+  Weaken = 32,
+  // Applies a vulnerable debuff to opponent, use some mana
+  Taunt = 64,
+  // Moderate magical attack, uses a lot of mana
+  Zap = 128,
+}

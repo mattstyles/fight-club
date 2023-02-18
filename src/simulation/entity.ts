@@ -12,6 +12,7 @@ export type Entity = {
   mana: number
 
   genome: Genome
+  genomeMask: number
 }
 
 export function create(): Entity {
@@ -30,6 +31,10 @@ export function create(): Entity {
       Math.random(),
       Math.random(),
       Math.random(),
+      Math.random(),
+      Math.random(),
+      Math.random(),
     ],
+    genomeMask: 0,
   }
 }
