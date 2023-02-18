@@ -30,7 +30,7 @@ function Content({selectedId, actions}: MainProps) {
     },
     {suspense: true}
   )
-  const onEdit = useCallback(
+  const update = useCallback(
     async (entity: Entity) => {
       await state.set(entity)
       await mutate(entity)
@@ -47,8 +47,8 @@ function Content({selectedId, actions}: MainProps) {
   }
 
   return (
-    <Container>
-      <EditEntity entity={entity} onEdit={onEdit} />
+    <Container size='full'>
+      <EditEntity entity={entity} update={update} />
     </Container>
   )
 }

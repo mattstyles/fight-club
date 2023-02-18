@@ -52,7 +52,7 @@ export function EntityRoute() {
       <ErrorBoundary FallbackComponent={ErrorFallback}>
         <Suspense fallback={<InlineLoading />}>
           <CreateEntityToast isOpen={isOpen} setIsOpen={setIsOpen} />
-          <Flex orientation='h'>
+          <Flex orientation='h' size='full'>
             <Aside
               isSelectionPending={isSelectionPending}
               selectedId={selectedId}
