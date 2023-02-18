@@ -1,6 +1,6 @@
 import type * as Stitches from '@stitches/react'
 import {createStitches} from '@stitches/react'
-import {slate, purple} from '@radix-ui/colors'
+import {slate, slateDark, purple, blackA, whiteA} from '@radix-ui/colors'
 
 import {fonts, fontSizes, lineHeights} from './theme/typography'
 import {
@@ -18,6 +18,8 @@ export const {styled, config, globalCss, keyframes} = createStitches({
       ...purple,
       ...tokenColors,
       ...alphaLight,
+      ...blackA,
+      ...whiteA,
 
       gray1: '$slate1',
       gray2: '$slate2',
@@ -31,6 +33,19 @@ export const {styled, config, globalCss, keyframes} = createStitches({
       gray10: '$slate10',
       gray11: '$slate11',
       gray12: '$slate12',
+
+      dark1: '$slateDark1',
+      dark2: '$slateDark2',
+      dark3: '$slateDark3',
+      dark4: '$slateDark4',
+      dark5: '$slateDark5',
+      dark6: '$slateDark6',
+      dark7: '$slateDark7',
+      dark8: '$slateDark8',
+      dark9: '$slateDark9',
+      dark10: '$slateDark10',
+      dark11: '$slateDark11',
+      dark12: '$slateDark12',
 
       primary1: '$purple1',
       primary2: '$purple2',
