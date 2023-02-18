@@ -1,3 +1,5 @@
+import type {Actions} from './state'
+
 import {Suspense} from 'react'
 import useSWR from 'swr'
 
@@ -7,7 +9,7 @@ import {state} from './state'
 
 type MainProps = {
   selectedId: string
-  onCreateEntity: () => Promise<void>
+  actions: Actions
 }
 export function Main({selectedId}: MainProps) {
   return (

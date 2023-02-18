@@ -1,6 +1,6 @@
-import {useSnapshot} from 'valtio'
-import * as React from 'react'
-import {Suspense, useMemo, useState, useCallback, useTransition} from 'react'
+import type {Actions} from './state'
+
+import {Suspense, useState, useCallback, useEffect} from 'react'
 import {RocketIcon} from '@radix-ui/react-icons'
 import useSWR from 'swr'
 
@@ -11,19 +11,17 @@ import {
   Text,
   ListSelect,
   Stack,
-  Toast,
   InlineLoading,
   Loading,
   Reveal,
 } from '~/components'
 
-import {createNewEntity, state} from './state'
+import {state} from './state'
 
 type AsideProps = {
   isSelectionPending: boolean
   selectedId: string
-  onSelectEntity: (id: string) => void
-  onCreateEntity: () => Promise<void>
+  actions: Actions
 }
 export function Aside(props: AsideProps) {
   return (
@@ -43,12 +41,7 @@ export function Aside(props: AsideProps) {
 }
 
 // @TODO add scroll area to deal with lots of entities, this is fairly low priority as it is unlikely ot happen
-function Content({
-  isSelectionPending,
-  selectedId,
-  onSelectEntity,
-  onCreateEntity,
-}: AsideProps) {
+function Content({isSelectionPending, selectedId, actions}: AsideProps) {
   // @TODO IDB will sort by id on entry (I think), but we might want to sort by name. We could also do this with an index. Might get interesting for puts though.
   const {data: entities, mutate} = useSWR(
     'all-entities',
@@ -65,19 +58,23 @@ function Content({
   // }, [entities])
 
   const [localSelected, setLocalSelected] = useState(selectedId)
+  // This is a bit rubbish :(
+  useEffect(() => {
+    setLocalSelected(selectedId)
+  }, [selectedId])
   const onImmediateSelect = useCallback(
     (id: string) => {
       setLocalSelected(id)
-      onSelectEntity(id)
+      actions.onSelectEntity(id)
     },
-    [onSelectEntity]
+    [actions.onSelectEntity]
   )
 
   return (
     <Stack gap='medium'>
-      <Heading onCreateEntity={onCreateEntity} />
+      <Heading onCreateEntity={actions.onCreateEntity} />
       {entities.length === 0 && (
-        <DebouncedButton color='neutral' onClick={onCreateEntity}>
+        <DebouncedButton color='neutral' onClick={actions.onCreateEntity}>
           Create new entity
         </DebouncedButton>
       )}

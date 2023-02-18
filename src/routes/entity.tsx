@@ -42,6 +42,11 @@ export function EntityRoute() {
     onSelectEntity(entity.id)
   }, [setIsOpen, setSelectedId])
 
+  const actions = {
+    onSelectEntity,
+    onCreateEntity,
+  }
+
   return (
     <Container size='full' padding='none'>
       <ErrorBoundary FallbackComponent={ErrorFallback}>
@@ -51,11 +56,10 @@ export function EntityRoute() {
             <Aside
               isSelectionPending={isSelectionPending}
               selectedId={selectedId}
-              onSelectEntity={onSelectEntity}
-              onCreateEntity={onCreateEntity}
+              actions={actions}
             />
             <Spacer size='large' />
-            <Main selectedId={selectedId} onCreateEntity={onCreateEntity} />
+            <Main selectedId={selectedId} actions={actions} />
           </Flex>
         </Suspense>
       </ErrorBoundary>
