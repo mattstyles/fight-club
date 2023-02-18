@@ -44,9 +44,6 @@ export class PersistData<T> {
   // With an key path IDB will use the key from the object to set, so no need to pass it here. If using put instead then key will be required.
   async set(value: T) {
     const db = await this.openDB()
-    // Use put for a simple key value pair
-    // await db.put(this.storeName, value, key)
-    // Use add when using an index, as we are here
-    await db.add(this.storeName, value)
+    await db.put(this.storeName, value)
   }
 }

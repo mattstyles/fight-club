@@ -58,7 +58,7 @@ export function EntityRoute() {
               selectedId={selectedId}
               actions={actions}
             />
-            <Spacer size='large' />
+            <Spacer size='large' direction='h' />
             <Main selectedId={selectedId} actions={actions} />
           </Flex>
         </Suspense>

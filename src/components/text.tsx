@@ -18,6 +18,13 @@ export const Text = styled('span', {
         fontWeight: 700,
         fontVariantCaps: 'all-small-caps',
       },
+      mutedAdditional: {
+        color: '$textLowContrast',
+        fontSize: '$s',
+        lineHeight: '$s',
+        fontWeight: 600,
+        fontVariantCaps: 'all-small-caps',
+      },
       mono: {
         fontFamily: '$mono',
       },

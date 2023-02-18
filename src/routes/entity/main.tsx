@@ -1,9 +1,11 @@
 import type {Actions} from './state'
+import type {Entity} from '~/simulation/entity'
 
-import {Suspense} from 'react'
+import {Suspense, useCallback} from 'react'
 import useSWR from 'swr'
 
 import {Container, Text, InlineLoading, Button} from '~/components'
+import {EditEntity} from '~/components/app/editentity'
 import {styled} from '~/theme'
 
 import {state} from './state'
@@ -21,12 +23,20 @@ export function Main(props: MainProps) {
 }
 
 function Content({selectedId, actions}: MainProps) {
-  const {data: entity} = useSWR(
+  const {data: entity, mutate} = useSWR(
     selectedId,
     async (key) => {
       return await state.get(key)
     },
     {suspense: true}
+  )
+  const onEdit = useCallback(
+    async (entity: Entity) => {
+      console.log('change event', entity)
+      await state.set(entity)
+      await mutate(entity)
+    },
+    [mutate]
   )
 
   if (entity == null) {
@@ -39,9 +49,7 @@ function Content({selectedId, actions}: MainProps) {
 
   return (
     <Container>
-      <Text>{entity.id}</Text>
-      <Text>{entity.name}</Text>
-      <Text>{entity.health}</Text>
+      <EditEntity entity={entity} onEdit={onEdit} />
     </Container>
   )
 }
