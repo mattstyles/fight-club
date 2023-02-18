@@ -3,7 +3,8 @@ import type {Actions} from './state'
 import {Suspense} from 'react'
 import useSWR from 'swr'
 
-import {Container, Text, InlineLoading} from '~/components'
+import {Container, Text, InlineLoading, Button} from '~/components'
+import {styled} from '~/theme'
 
 import {state} from './state'
 
@@ -11,18 +12,15 @@ type MainProps = {
   selectedId: string
   actions: Actions
 }
-export function Main({selectedId}: MainProps) {
+export function Main(props: MainProps) {
   return (
     <Suspense fallback={<InlineLoading />}>
-      <Content selectedId={selectedId} />
+      <Content {...props} />
     </Suspense>
   )
 }
 
-type MainContentProps = {
-  selectedId: string
-}
-function Content({selectedId}: MainContentProps) {
+function Content({selectedId, actions}: MainProps) {
   const {data: entity} = useSWR(
     selectedId,
     async (key) => {
@@ -34,9 +32,7 @@ function Content({selectedId}: MainContentProps) {
   if (entity == null) {
     return (
       <Container size='full'>
-        <Text>
-          Use the list to select an entity to edit, or create a new one.
-        </Text>
+        <CTA onClick={actions.onCreateEntity}>Create a new entity</CTA>
       </Container>
     )
   }
@@ -49,3 +45,12 @@ function Content({selectedId}: MainContentProps) {
     </Container>
   )
 }
+
+const CTA = styled(Button, {
+  width: 320,
+  height: 240,
+
+  defaultVariants: {
+    color: 'primary',
+  },
+})

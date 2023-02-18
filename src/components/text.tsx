@@ -29,6 +29,9 @@ export const Text = styled('span', {
       lowContrast: {
         color: '$textLowContrast',
       },
+      primary: {
+        color: '$primary12',
+      },
     },
     size: {
       small: {
