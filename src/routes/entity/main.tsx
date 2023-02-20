@@ -35,7 +35,7 @@ function Content({selectedId, actions}: MainProps) {
       await state.set(entity)
       await mutate(entity)
     },
-    [mutate]
+    [selectedId]
   )
 
   if (entity == null) {
