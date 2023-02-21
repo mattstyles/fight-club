@@ -33,6 +33,9 @@ export const Stack = styled('div', {
       center: {
         alignItems: 'center',
       },
+      baseline: {
+        alignItems: 'baseline',
+      },
     },
     spread: {
       true: {

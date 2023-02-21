@@ -19,6 +19,7 @@
     "@radix-ui/react-tabs": "^1.0.2",
     "@radix-ui/react-toast": "^1.1.2",
     "@stitches/react": "^1.2.8",
+    "delay": "^5.0.0",
     "idb": "^7.1.1",
     "just-random-integer": "^4.2.0",
     "react": "^18.2.0",

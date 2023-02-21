@@ -25,7 +25,7 @@ export function EditEntity({entity, update}: Props) {
     (event: ChangeEvent<HTMLInputElement>) => {
       const value = event.target.value
       const nValue = parseInt(value) || 0
-      entity.health = nValue
+      entity.health = [nValue, nValue]
       update(entity)
     },
     [update]
@@ -34,7 +34,7 @@ export function EditEntity({entity, update}: Props) {
     (event: ChangeEvent<HTMLInputElement>) => {
       const value = event.target.value
       const nValue = parseInt(value) || 0
-      entity.stamina = nValue
+      entity.stamina = [nValue, nValue]
       update(entity)
     },
     [update]
@@ -43,7 +43,7 @@ export function EditEntity({entity, update}: Props) {
     (event: ChangeEvent<HTMLInputElement>) => {
       const value = event.target.value
       const nValue = parseInt(value) || 0
-      entity.mana = nValue
+      entity.mana = [nValue, nValue]
       update(entity)
     },
     [update]
@@ -59,17 +59,17 @@ export function EditEntity({entity, update}: Props) {
             <EditString label='Name' value={entity.name} onEdit={onEditName} />
             <EditNumber
               label='Health'
-              value={entity.health + ''}
+              value={String(entity.health[1])}
               onEdit={onEditHealth}
             />
             <EditNumber
               label='Stamina'
-              value={entity.stamina + ''}
+              value={String(entity.stamina[1])}
               onEdit={onEditStamina}
             />
             <EditNumber
               label='Mana'
-              value={entity.mana + ''}
+              value={String(entity.mana[1])}
               onEdit={onEditMana}
             />
           </Stack>

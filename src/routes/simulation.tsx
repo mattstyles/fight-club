@@ -1,8 +1,8 @@
-import {useSnapshot} from 'valtio'
-import {useCallback, useMemo} from 'react'
+import {useSnapshot, proxy} from 'valtio'
+import {useCallback, useMemo, useState} from 'react'
 import useSWR from 'swr'
 
-import {simulationConfig} from './simulation/state'
+import {simulationConfig} from '~/state'
 import {state as entityState, state} from './entity/state'
 import {
   Container,
@@ -15,6 +15,8 @@ import {
   Select,
   Dialog,
 } from '~/components'
+import {FightDialog} from './simulation/fight'
+import {FightClub} from '~/simulation/fight'
 
 export function SimulationRoute() {
   const renderState = useSnapshot(simulationConfig)
@@ -76,6 +78,7 @@ export function SimulationRoute() {
     [simulationConfig]
   )
 
+  const [fightClub, setFightClub] = useState<FightClub | null>(null)
   const isReady = useMemo(() => {
     return !Boolean(renderState.target && renderState.agents)
   }, [renderState.target, renderState.agents])
@@ -122,18 +125,27 @@ export function SimulationRoute() {
         <Stack>
           <Spacer size='large' />
           <Stack orientation='h' justify='right'>
-            <Button disabled={isReady} onClick={() => setIsOpen(!isOpen)}>
+            <Button
+              disabled={isReady}
+              onClick={() => {
+                const {target, agents} = simulationConfig
+                if (target == null || agents == null) {
+                  return
+                }
+                setFightClub(() => {
+                  const fight = new FightClub(target, {...agents}, {delay: 200})
+                  return proxy(fight)
+                })
+                setIsOpen(!isOpen)
+              }}>
               Test
             </Button>
             <Button color='primary' disabled={isReady}>
               Simulate
             </Button>
-            <Button onClick={() => setIsOpen(!isOpen)}>Dialog test</Button>
           </Stack>
         </Stack>
-        <Dialog.Dialog open={isOpen} onOpenChange={setIsOpen}>
-          <Text>Hello world</Text>
-        </Dialog.Dialog>
+        <FightDialog isOpen={isOpen} setIsOpen={setIsOpen} fight={fightClub} />
       </Stack>
     </Container>
   )

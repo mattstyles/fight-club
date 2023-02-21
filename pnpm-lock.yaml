@@ -15,6 +15,7 @@ specifiers:
   '@types/react': ^18.0.27
   '@types/react-dom': ^18.0.10
   '@vitejs/plugin-react-swc': ^3.0.0
+  delay: ^5.0.0
   idb: ^7.1.1
   just-random-integer: ^4.2.0
   prettier: ^2.8.4
@@ -38,6 +39,7 @@ dependencies:
   '@radix-ui/react-tabs': 1.0.2_biqbaboplfbrettd7655fr4n2y
   '@radix-ui/react-toast': 1.1.2_biqbaboplfbrettd7655fr4n2y
   '@stitches/react': 1.2.8_react@18.2.0
+  delay: 5.0.0
   idb: 7.1.1
   just-random-integer: 4.2.0
   react: 18.2.0
@@ -1048,6 +1050,11 @@ packages:
     dependencies:
       type-detect: 4.0.8
     dev: true
+
+  /delay/5.0.0:
+    resolution: {integrity: sha512-ReEBKkIfe4ya47wlPYf/gu5ib6yUG0/Aez0JQZQz94kiWtRQvZIQbTiehsnwHvLSWJnQdhVeqYue7Id1dKr0qw==}
+    engines: {node: '>=10'}
+    dev: false
 
   /detect-node-es/1.1.0:
     resolution: {integrity: sha512-ypdmJU/TbBby2Dxibuv7ZLW3Bs1QEmM7nHjEANfohJLvE0XVujisn1qPJcZxg+qDucsr+bP6fLD1rPS3AhJ7EQ==}

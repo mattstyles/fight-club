@@ -2,6 +2,9 @@
  * We can use enums better here. We're using enums to get the compiler to check callsites rather than validating strings or object keys, but this is currently a bit of a mess with a lot of repetition and is not scalable.
  */
 
+import {Entity} from './entity'
+import {isInMask} from '~/utils/bit'
+
 export type Move = {
   type: Moveset
   gene: MoveGene
@@ -49,6 +52,17 @@ export enum Moveset {
   Taunt,
   Zap,
 }
+
+export const movesetArr = [
+  Moveset.Rest,
+  Moveset.Parry,
+  Moveset.Block,
+  Moveset.Strike,
+  Moveset.Bash,
+  Moveset.Weaken,
+  Moveset.Taunt,
+  Moveset.Zap,
+]
 
 export function getMove(moveId: Moveset): Move {
   switch (moveId) {
@@ -109,4 +123,15 @@ export function getMove(moveId: Moveset): Move {
         name: 'Zap',
       }
   }
+}
+
+export function getAvailableMoveset(entity: Entity): Set<Moveset> {
+  const moveset = new Set<Moveset>()
+  movesetArr.forEach((move) => {
+    const m = getMove(move)
+    if (isInMask(m.mask, entity.genomeMask)) {
+      moveset.add(m.type)
+    }
+  })
+  return moveset
 }

@@ -63,7 +63,7 @@ const StyledContent = styled(DialogPrimitive.Content, {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: '90vw',
-  maxWidth: 450,
+  maxWidth: 680,
   maxHeight: '85vh',
   padding: '$5',
   animation: `${hideSlide} 150ms cubic-bezier(0.16, 1, 0.3, 1)`,

@@ -1,2 +1,2 @@
 export {page} from './page'
-export {sim} from './simulation'
+export {simulationConfig} from './simulation'
