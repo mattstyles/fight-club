@@ -1,6 +1,7 @@
 import {useSnapshot, proxy} from 'valtio'
 import {useCallback, useMemo, useState} from 'react'
 import useSWR from 'swr'
+import clone from 'lodash.clonedeep'
 
 import {simulationConfig} from '~/state'
 import {state as entityState, state} from './entity/state'
@@ -133,7 +134,9 @@ export function SimulationRoute() {
                   return
                 }
                 setFightClub(() => {
-                  const fight = new FightClub(target, {...agents}, {delay: 200})
+                  const fight = new FightClub(clone(target), clone(agents), {
+                    delay: 200,
+                  })
                   return proxy(fight)
                 })
                 setIsOpen(!isOpen)

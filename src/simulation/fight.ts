@@ -34,7 +34,15 @@ export class FightClub {
     //   apply fight round (play each move)
     // }
 
+    // Check exit condition on the way in here
+    if (this.target.health[0] <= 0 || this.agent.health[0] <= 0) {
+      return
+    }
+
+    // Resets
     this.target.block = 0
+
+    // Select actions
     const round: FightRound = {
       actions: [
         {
@@ -48,19 +56,19 @@ export class FightClub {
       ],
     }
 
+    // Record actions
     this.rounds.push(round)
 
+    // Apply actions
     round.actions.forEach((action) => {
       const t = action.initiator === 'target' ? this.target : this.agent
       const a = action.initiator === 'target' ? this.agent : this.target
       applyMove(t, a, action.move)
     })
 
-    // Check exit condition - should probably due this during the round phase
-    if (this.target.health[0] > 0 && this.agent.health[0] > 0) {
-      await delay(this.options.delay)
-      await this.run()
-    }
+    // Go next
+    await delay(this.options.delay)
+    await this.run()
   }
 }
 
