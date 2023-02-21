@@ -39,5 +39,13 @@ export const Stack = styled('div', {
         justifyContent: 'space-between',
       },
     },
+    justify: {
+      spread: {
+        justifyContent: 'space-between',
+      },
+      right: {
+        justifyContent: 'flex-end',
+      },
+    },
   },
 })

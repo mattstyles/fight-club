@@ -1,9 +1,7 @@
 import {useState, useRef, useEffect} from 'react'
 
-// Single toast state, for use in-situ.
-// Requires a little more manual effort but colocates the toast with the trigger and allows flexibility to add whatever contents you want
 // Handles the slight delay which allows animations to work
-export function useSingleToastState(
+export function useDialogState(
   value: boolean
 ): [boolean, (value: boolean) => void] {
   const timeoutRef = useRef(0)

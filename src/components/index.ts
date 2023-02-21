@@ -24,6 +24,7 @@ export * as ListSelect from './listsingleselect'
 
 // Modal
 export * as Toast from './toast'
+export * as Dialog from './dialog'
 
 // Misc
 export {ErrorFallback} from './error'

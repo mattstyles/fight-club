@@ -21,6 +21,9 @@ export const Flex = styled('div', {
       spread: {
         justifyContent: 'space-between',
       },
+      right: {
+        justifyContent: 'flex-end',
+      },
     },
     orientation: {
       h: {

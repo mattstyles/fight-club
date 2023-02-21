@@ -6,10 +6,10 @@ import {styled} from '~/theme'
 
 export const Root = SelectPrimitive.Root
 
-export function Trigger() {
+export function Trigger({placeholder, id}: {placeholder: string; id?: string}) {
   return (
-    <StyledTrigger>
-      <SelectPrimitive.Value />
+    <StyledTrigger id={id}>
+      <SelectPrimitive.Value placeholder={placeholder} />
       <SelectPrimitive.Icon>
         <ChevronDownIcon />
       </SelectPrimitive.Icon>
